@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import {Toast} from 'react-toastify/dist/components';
+import {toast} from 'react-toastify';
 
 const initialState = {
   isLoading: false,
