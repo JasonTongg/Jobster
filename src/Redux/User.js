@@ -1,11 +1,11 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {toast} from 'react-toastify';
 import {CustomFetch} from '../Utils/CustomFetch';
-import {AddToLocalStorage} from '../Utils/LocalStorage';
+import {AddToLocalStorage, RemoveLocalStorage} from '../Utils/LocalStorage';
 
 const initialState = {
   isLoading: false,
-  user: [],
+  user: null,
 };
 
 export const userLogin = createAsyncThunk(
@@ -35,6 +35,12 @@ export const userRegister = createAsyncThunk(
 const userSlice = createSlice({
   name: 'User',
   initialState,
+  reducers: {
+    userLogout: (state, payload) => {
+      state.user = null;
+      RemoveLocalStorage();
+    },
+  },
   extraReducers: {
     [userLogin.pending]: (state) => {
       state.isLoading = true;
@@ -65,4 +71,5 @@ const userSlice = createSlice({
   },
 });
 
+export const {userLogout} = userSlice.actions;
 export default userSlice.reducer;

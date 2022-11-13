@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Container, Form} from './Style';
 import '../../Global.css';
 import Logo from '../../Assets/logo.svg';
@@ -6,6 +6,8 @@ import Button from '../../Components/Button/Button';
 import InputItem from '../../Components/InputItem/InputItem';
 import {userLogin, userRegister} from '../../Redux/User';
 import {useDispatch, useSelector} from 'react-redux';
+import {toast} from 'react-toastify';
+import {useNavigate} from 'react-router-dom';
 
 let initialFormData = {
   name: '',
@@ -15,11 +17,25 @@ let initialFormData = {
 
 export default function LoginRegis() {
   let dispatch = useDispatch();
-  let {isLoading} = useSelector((state) => state.User);
+  let navigate = useNavigate();
+  let {isLoading, user} = useSelector((state) => state.User);
   let [login, setLogin] = useState(false);
   let [formData, setFormData] = useState(initialFormData);
 
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 1500);
+    }
+    // eslint-disable-next-line
+  }, [user]);
+
   let handleSubmit = () => {
+    if (!formData.email || !formData.password || (login && !formData.name)) {
+      toast.error('Please fill the form...');
+      return;
+    }
     if (!login) {
       dispatch(userLogin({email: formData.email, password: formData.password}));
       return;
