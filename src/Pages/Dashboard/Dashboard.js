@@ -43,7 +43,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     dispatch(getJobs());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     switch (window.location.pathname) {
