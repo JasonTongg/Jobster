@@ -1,11 +1,11 @@
 export const AddToLocalStorage = (data) => {
-  window.localStorage.setItem('token', data);
+  window.localStorage.setItem('user', JSON.stringify(data));
 };
 
 export const RemoveLocalStorage = () => {
-  window.localStorage.removeItem('token');
+  window.localStorage.removeItem('user');
 };
 
 export const GetLocalStorage = () => {
-  return window.localStorage.getItem('token');
+  return JSON.parse(window.localStorage.getItem('user'));
 };

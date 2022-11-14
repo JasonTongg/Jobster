@@ -29,6 +29,7 @@ export default function Router() {
           <Route path="profile" element={<Profile />} />
           <Route path="jobs" element={<Jobs />} />
           <Route path="add" element={<AddEditJob />} />
+          <Route path="edit" element={<AddEditJob edit />} />
         </Route>
       </Routes>
       <ToastContainer position="top-center"></ToastContainer>

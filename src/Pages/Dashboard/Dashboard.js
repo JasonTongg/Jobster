@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Container, SideBar, Content, List, Navbar, Body} from './Style';
 import Logo from '../../Assets/logo.svg';
 import {FaChartBar} from 'react-icons/fa';
@@ -15,23 +15,24 @@ import {BsPersonCircle} from 'react-icons/bs';
 import {useSelector, useDispatch} from 'react-redux';
 import {Outlet, useNavigate} from 'react-router-dom';
 import {userLogout} from '../../Redux/User';
+import {getJobs} from '../../Redux/AllJobs';
 
 let Sidebar = [
   {icon: <FaChartBar />, text: 'Stats', path: '/dashboard'},
-  {icon: <TbReportSearch />, text: 'All Jobs', path: '/dashboard/profile'},
+  {icon: <TbReportSearch />, text: 'All Jobs', path: '/dashboard/jobs'},
   {
     icon: <HiOutlineClipboardDocumentList />,
     text: 'Add Job',
-    path: '/dashboard/jobs',
+    path: '/dashboard/add',
   },
-  {icon: <ImProfile />, text: 'Profile', path: '/dashboard/add'},
+  {icon: <ImProfile />, text: 'Profile', path: '/dashboard/profile'},
 ];
 
 export default function Dashboard() {
   let user = useSelector((state) => state.User.user);
   let dispatch = useDispatch();
   let navigate = useNavigate();
-  let [activeList, setActiveList] = useState(0);
+  let [activeList, setActiveList] = useState();
   let [toggleSide, setToggleSide] = useState(false);
   let [logout, setLogout] = useState(false);
 
@@ -39,6 +40,27 @@ export default function Dashboard() {
     dispatch(userLogout());
     navigate('/');
   };
+
+  useEffect(() => {
+    dispatch(getJobs());
+  }, []);
+
+  useEffect(() => {
+    switch (window.location.pathname) {
+      case '/dashboard/profile':
+        setActiveList(3);
+        break;
+      case '/dashboard/jobs':
+        setActiveList(1);
+        break;
+      case '/dashboard/add':
+        setActiveList(2);
+        break;
+      default:
+        setActiveList(0);
+        break;
+    }
+  }, []);
 
   return (
     <Container className={toggleSide && 'full'}>

@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
-  width: 100vw;
-  height: 100vh;
   display: grid;
   grid-template-columns: 250px 1fr;
+  min-height: 100vh;
 
   &.full {
     grid-template-columns: 1fr;
@@ -100,8 +99,9 @@ export const Navbar = styled.nav`
 
 export const Body = styled.div`
   width: 100%;
-  height: 100%;
   background-color: var(--white);
   border: 1px solid rgba(0, 0, 0, 0.15);
   padding: 3rem 4rem;
+  max-height: calc(100vh - 96px);
+  overflow: auto;
 `;
