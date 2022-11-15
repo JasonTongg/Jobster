@@ -61,7 +61,6 @@ const allJobsSlice = createSlice({
     },
     [getStats.fulfilled]: (state, {payload}) => {
       state.isLoading = false;
-      console.log(payload);
       state.stats = payload.defaultStats;
       state.monthlyApplications = payload.monthlyApplications;
     },

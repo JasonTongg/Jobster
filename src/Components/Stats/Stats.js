@@ -56,7 +56,10 @@ export default function Stats() {
     <Container>
       <Stat>
         {data.map((item, index) => (
-          <StatItem style={{borderBottom: `5px solid ${item.color}`}}>
+          <StatItem
+            style={{borderBottom: `5px solid ${item.color}`}}
+            key={index}
+          >
             <div className="top" style={{color: item.color}}>
               <h4>{item.type}</h4>
               <div style={{backgroundColor: item.back}}>{item.icon}</div>

@@ -12,7 +12,7 @@ export default function InputItem({
 }) {
   return (
     <Container style={max && {width: '100%'}}>
-      <label for={name}>{name}</label>
+      <label htmlFor={name}>{name}</label>
       <input
         type={type}
         id={name}

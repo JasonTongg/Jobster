@@ -47,6 +47,7 @@ export default function Profile() {
             type={item.type}
             value={item.value}
             refs={item.ref}
+            key={index}
             action={(e) =>
               setInputData({...inputData, [item.name]: e.target.value})
             }

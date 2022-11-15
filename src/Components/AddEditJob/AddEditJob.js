@@ -27,11 +27,11 @@ export default function AddEditJob({edit}) {
   ];
 
   let [inputData, setInputData] = useState({
-    Position: edit ? editData.position : '',
-    Company: edit ? editData.company : '',
-    JobLocation: edit ? editData.jobLocation : 'My City',
-    Status: edit ? editData.status : 'interview',
-    Type: edit ? editData.jobType : 'full-time',
+    Position: edit ? editData?.position : '',
+    Company: edit ? editData?.company : '',
+    JobLocation: edit ? editData?.jobLocation : 'My City',
+    Status: edit ? editData?.status : 'interview',
+    Type: edit ? editData?.jobType : 'full-time',
   });
 
   return (
@@ -51,56 +51,32 @@ export default function AddEditJob({edit}) {
           />
         ))}
         <SelectContainer>
-          <label for="status">Status</label>
+          <label htmlFor="status">Status</label>
           <Select
             id="status"
             onChange={(e) =>
               setInputData({...inputData, Status: e.target.value})
             }
             ref={status}
+            defaultValue={editData?.status}
           >
-            <option
-              value="interview"
-              selected={editData?.status === 'interview'}
-            >
-              interview
-            </option>
-            <option value="declined" selected={editData?.status === 'declined'}>
-              declined
-            </option>
-            <option value="pending" selected={editData?.status === 'pending'}>
-              pending
-            </option>
+            <option value="interview">interview</option>
+            <option value="declined">declined</option>
+            <option value="pending">pending</option>
           </Select>
         </SelectContainer>
         <SelectContainer>
-          <label for="type">Job Type</label>
+          <label htmlFor="type">Job Type</label>
           <Select
             id="type"
             onChange={(e) => setInputData({...inputData, Type: e.target.value})}
             ref={type}
+            defaultValue={editData?.jobType}
           >
-            <option
-              value="full-time"
-              selected={editData?.jobType === 'full-time'}
-            >
-              full-time
-            </option>
-            <option
-              value="part-time"
-              selected={editData?.jobType === 'part-time'}
-            >
-              part-time
-            </option>
-            <option value="remote" selected={editData?.jobType === 'remote'}>
-              remote
-            </option>
-            <option
-              value="internship"
-              selected={editData?.jobType === 'internship'}
-            >
-              internship
-            </option>
+            <option value="full-time">full-time</option>
+            <option value="part-time">part-time</option>
+            <option value="remote">remote</option>
+            <option value="internship">internship</option>
           </Select>
         </SelectContainer>
 

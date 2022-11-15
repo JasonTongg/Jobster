@@ -35,7 +35,7 @@ export default function Pagination() {
       }).map((item, index) => (
         <div
           key={index}
-          className={page === item && 'active'}
+          className={page === item ? 'active' : ''}
           onClick={() => setPage(item)}
         >
           {item}

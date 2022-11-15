@@ -12,7 +12,7 @@ import {
 import Logo from '../../Assets/logo.svg';
 import {FaChartBar} from 'react-icons/fa';
 import {TbReportSearch} from 'react-icons/tb';
-import {HiOutlineClipboardDocumentList} from 'react-icons/hi2';
+import {MdLibraryAdd} from 'react-icons/md';
 import {ImProfile} from 'react-icons/im';
 import SidebarList from '../../Components/SidebarList/SidebarList';
 import {
@@ -32,7 +32,7 @@ let Sidebar = [
   {icon: <FaChartBar />, text: 'Stats', path: '/dashboard'},
   {icon: <TbReportSearch />, text: 'All Jobs', path: '/dashboard/jobs'},
   {
-    icon: <HiOutlineClipboardDocumentList />,
+    icon: <MdLibraryAdd />,
     text: 'Add Job',
     path: '/dashboard/add',
   },

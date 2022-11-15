@@ -42,7 +42,7 @@ export default function SearchJob() {
           refs={search}
         />
         <SelectContainer>
-          <label for="status">Status</label>
+          <label htmlFor="status">Status</label>
           <Select
             id="status"
             onChange={(e) =>
@@ -60,7 +60,7 @@ export default function SearchJob() {
           </Select>
         </SelectContainer>
         <SelectContainer>
-          <label for="type">Type</label>
+          <label htmlFor="type">Type</label>
           <Select
             id="type"
             onChange={(e) =>
@@ -79,7 +79,7 @@ export default function SearchJob() {
           </Select>
         </SelectContainer>
         <SelectContainer>
-          <label for="sort">Sort</label>
+          <label htmlFor="sort">Sort</label>
           <Select
             id="sort"
             onChange={(e) =>

@@ -13,7 +13,7 @@ export const addJob = createAsyncThunk('job/add', async (job, thunkAPI) => {
     let res = await CustomFetch.post('/jobs', job);
     return res.data;
   } catch (error) {
-    thunkAPI.rejectWithValue(error.response.data.msg);
+    return thunkAPI.rejectWithValue(error.response.data.msg);
   }
 });
 
@@ -55,7 +55,7 @@ const jobSlice = createSlice({
     [addJob.pending]: (state) => {
       state.isLoading = true;
     },
-    [addJob.fulfilled]: (state, {payload}) => {
+    [addJob.fulfilled]: (state) => {
       state.isLoading = false;
       toast.success('Create job success');
     },
