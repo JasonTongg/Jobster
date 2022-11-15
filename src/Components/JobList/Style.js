@@ -1,10 +1,18 @@
 import styled from 'styled-components';
 
+export const BigContainer = styled.div`
+  margin-top: 2rem;
+`;
+
 export const Container = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 1rem;
+
+  @media only screen and (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const Item = styled.div`

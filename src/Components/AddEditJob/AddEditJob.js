@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {Container, Form, Select, SelectContainer} from './Style';
 import InputItem from '../InputItem/InputItem';
 import Button from '../Button/Button';
@@ -10,13 +10,19 @@ export default function AddEditJob({edit}) {
   let dispatch = useDispatch();
   let navigate = useNavigate();
   let editData = useSelector((state) => state.Job.editJob);
+  let position = useRef();
+  let company = useRef();
+  let location = useRef();
+  let status = useRef();
+  let type = useRef();
 
   let input = [
-    {name: 'Position', type: 'text'},
-    {name: 'Company', type: 'text'},
+    {name: 'Position', type: 'text', ref: position},
+    {name: 'Company', type: 'text', ref: company},
     {
       name: 'JobLocation',
       type: 'email',
+      ref: location,
     },
   ];
 
@@ -38,6 +44,7 @@ export default function AddEditJob({edit}) {
             name={item.name}
             type={item.type}
             value={inputData[item.name]}
+            refs={item.ref}
             action={(e) =>
               setInputData({...inputData, [item.name]: e.target.value})
             }
@@ -50,6 +57,7 @@ export default function AddEditJob({edit}) {
             onChange={(e) =>
               setInputData({...inputData, Status: e.target.value})
             }
+            ref={status}
           >
             <option
               value="interview"
@@ -70,6 +78,7 @@ export default function AddEditJob({edit}) {
           <Select
             id="type"
             onChange={(e) => setInputData({...inputData, Type: e.target.value})}
+            ref={type}
           >
             <option
               value="full-time"
@@ -98,14 +107,20 @@ export default function AddEditJob({edit}) {
         <div className="buttons">
           <Button
             text="Clear"
-            action={() =>
+            background="#627D98"
+            action={() => {
               setInputData({
                 ...inputData,
                 Position: '',
                 Company: '',
                 JobLocation: 'My City',
-              })
-            }
+              });
+              position.current.value = '';
+              company.current.value = '';
+              location.current.value = 'My City';
+              status.current.value = 'interview';
+              type.current.value = 'full-time';
+            }}
           />
           <Button
             text="Submit"

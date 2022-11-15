@@ -7,6 +7,7 @@ import {
   Buttons,
   InfoItem,
   JobStatus,
+  BigContainer,
 } from './Style';
 import {useSelector, useDispatch} from 'react-redux';
 import {HiLocationMarker} from 'react-icons/hi';
@@ -38,7 +39,7 @@ export default function JobList() {
   }
 
   return (
-    <>
+    <BigContainer>
       <h3 style={{marginBottom: '1rem'}}>
         {allJobs.length} Job{allJobs.length > 1 && 's'} Found
       </h3>
@@ -99,6 +100,6 @@ export default function JobList() {
           </Item>
         ))}
       </Container>
-    </>
+    </BigContainer>
   );
 }

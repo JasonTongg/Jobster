@@ -5,6 +5,10 @@ export const Container = styled.section`
   grid-template-columns: 250px 1fr;
   min-height: 100vh;
 
+  @media only screen and (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
+
   &.full {
     grid-template-columns: 1fr;
   }
@@ -22,8 +26,13 @@ export const SideBar = styled.div`
   position: static;
   z-index: 0;
 
+  @media only screen and (max-width: 800px) {
+    display: none;
+  }
+
   img {
     padding-left: 2.5rem;
+    cursor: pointer;
   }
 
   &.hide {
@@ -66,6 +75,10 @@ export const Navbar = styled.nav`
   h2 {
     font-size: 2rem;
     font-weight: normal;
+
+    @media only screen and (max-width: 500px) {
+      display: none;
+    }
   }
 
   div {
@@ -104,4 +117,67 @@ export const Body = styled.div`
   padding: 3rem 4rem;
   max-height: calc(100vh - 96px);
   overflow: auto;
+
+  @media only screen and (max-width: 500px) {
+    padding: 3rem 2rem;
+  }
+`;
+
+export const PopupBarContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: none;
+  transform: translateY(-100%);
+
+  @media only screen and (max-width: 800px) {
+    display: flex;
+  }
+
+  &.show {
+    transform: translateY(0%);
+  }
+`;
+
+export const PopupBar = styled.div`
+  padding: 2rem 5rem 2rem 5rem;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  position: relative;
+
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-size: 30px;
+    padding: 0;
+    width: fit-content;
+    color: red;
+    cursor: pointer;
+  }
+
+  & > * {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-block: 1rem 0;
+    & > * {
+      padding: 1rem;
+      width: fit-content;
+    }
+  }
 `;

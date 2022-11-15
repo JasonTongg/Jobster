@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {Container, Form} from './Style';
 import '../../Global.css';
 import Logo from '../../Assets/logo.svg';
@@ -21,12 +21,15 @@ export default function LoginRegis() {
   let {isLoading, user} = useSelector((state) => state.User);
   let [login, setLogin] = useState(false);
   let [formData, setFormData] = useState(initialFormData);
+  let name = useRef();
+  let email = useRef();
+  let password = useRef();
 
   useEffect(() => {
     if (user) {
       setTimeout(() => {
         navigate('/dashboard');
-      }, 1500);
+      }, 0);
     }
     // eslint-disable-next-line
   }, [user]);
@@ -60,6 +63,7 @@ export default function LoginRegis() {
             type="text"
             action={(e) => setFormData({...formData, name: e.target.value})}
             max
+            refs={name}
           />
         )}
         <InputItem
@@ -67,12 +71,14 @@ export default function LoginRegis() {
           type="text"
           action={(e) => setFormData({...formData, email: e.target.value})}
           max
+          refs={email}
         />
         <InputItem
           name="Password"
           type="password"
           action={(e) => setFormData({...formData, password: e.target.value})}
           max
+          refs={password}
         />
         <Button
           text={isLoading ? 'Loading...' : 'Submit'}

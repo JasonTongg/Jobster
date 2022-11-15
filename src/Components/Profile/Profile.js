@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {Container, Form} from './Style';
 import InputItem from '../InputItem/InputItem';
 import Button from '../Button/Button';
@@ -8,11 +8,26 @@ import {updateUser} from '../../Redux/User';
 export default function Profile() {
   let user = useSelector((state) => state.User.user);
   let dispatch = useDispatch();
+  let name = useRef();
+  let last = useRef();
+  let email = useRef();
+  let location = useRef();
+
   let input = [
-    {name: 'Name', type: 'text', value: user.name},
-    {name: 'LastName', type: 'text', value: user.lastName || 'Last name'},
-    {name: 'Email', type: 'email', value: user.email},
-    {name: 'Location', type: 'text', value: user.location || 'Your city'},
+    {name: 'Name', type: 'text', value: user.name, ref: name},
+    {
+      name: 'LastName',
+      type: 'text',
+      value: user.lastName || 'Last name',
+      ref: last,
+    },
+    {name: 'Email', type: 'email', value: user.email, ref: email},
+    {
+      name: 'Location',
+      type: 'text',
+      value: user.location || 'Your city',
+      ref: location,
+    },
   ];
 
   let [inputData, setInputData] = useState({
@@ -31,6 +46,7 @@ export default function Profile() {
             name={item.name}
             type={item.type}
             value={item.value}
+            refs={item.ref}
             action={(e) =>
               setInputData({...inputData, [item.name]: e.target.value})
             }

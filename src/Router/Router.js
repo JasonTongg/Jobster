@@ -10,13 +10,21 @@ import Stats from '../Components/Stats/Stats';
 import Profile from '../Components/Profile/Profile';
 import Jobs from '../Components/Jobs/Jobs';
 import AddEditJob from '../Components/AddEditJob/AddEditJob';
+import LoginRoute from './LoginRoute';
 
 export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Login" element={<LoginRegis />} />
+        <Route
+          path="/Login"
+          element={
+            <LoginRoute>
+              <LoginRegis />
+            </LoginRoute>
+          }
+        />
         <Route
           path="/Dashboard"
           element={

@@ -13,15 +13,23 @@ export const Form = styled.div`
   gap: 1rem;
   margin-top: 2rem;
 
+  @media only screen and (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
+
   button {
     height: fit-content;
   }
 
   .buttons {
-    width: 100%100%;
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
+
+    @media only screen and (max-width: 500px) {
+      grid-template-columns: 1fr;
+    }
 
     & > * {
       width: 100%;

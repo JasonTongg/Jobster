@@ -19,7 +19,7 @@ export default function InputItem({
         defaultValue={value}
         onChange={action}
         placeholder={placeholder}
-        // ref={refs}
+        ref={refs}
       />
     </Container>
   );

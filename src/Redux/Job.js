@@ -35,7 +35,7 @@ export const deleteJobs = createAsyncThunk(
   async (job, thunkAPI) => {
     try {
       let res = await CustomFetch.delete(`/jobs/${job}`);
-      thunkAPI.dispatch(getJobs());
+      thunkAPI.dispatch(getJobs(thunkAPI.getState().AllJobs.filter));
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg);

@@ -6,6 +6,7 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2rem;
   background-color: var(--white);
 `;
 
@@ -20,6 +21,10 @@ export const Content = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+
+  @media only screen and (max-width: 820px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const Info = styled.div`
@@ -31,9 +36,17 @@ export const Info = styled.div`
   justify-content: center;
   gap: 2rem;
 
+  @media only screen and (max-width: 820px) {
+    align-items: center;
+  }
+
   h1 {
     margin: 0;
     font-size: 3rem;
+
+    @media only screen and (max-width: 540px) {
+      text-align: center;
+    }
 
     span {
       color: var(--primaryColor);
@@ -42,6 +55,9 @@ export const Info = styled.div`
 
   p {
     line-height: 1.8rem;
+    @media only screen and (max-width: 820px) {
+      text-align: justify;
+    }
   }
 `;
 
@@ -51,6 +67,9 @@ export const Image = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media only screen and (max-width: 820px) {
+    display: none;
+  }
 
   img {
     width: 85%;
